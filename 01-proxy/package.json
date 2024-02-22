@@ -1,0 +1,11 @@
+{
+  "name": "01-proxy",
+  "version": "1.0.0",
+  "description": "make a proxy gateway from scratch with nodejs",
+  "main": "server.ts",
+  "author": "onecode24",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.11.20"
+  }
+}
