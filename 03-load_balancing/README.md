@@ -13,9 +13,7 @@ This is a simple load balancer app who balance each request to the server runnin
 6. Open 3 terminal windows and run `node server.js`, `node app.js` & `./test_load_balancing` in each of them
 
 ## How to use
-1. Open a browser and go to `http://localhost:3000` 
+1. Lanch the test script `./test_load_balancing` in a terminal
 
 ## Source
-[Node.js net module](https://nodejs.org/api/net.html)
-[Node.js http module](https://nodejs.org/api/http.html)
-[book](https://leanpub.com/byo_web_server/)
+[Youtube](https://www.youtube.com/watch?v=2oZJSePTivY)
