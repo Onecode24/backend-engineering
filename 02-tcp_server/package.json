@@ -1,0 +1,12 @@
+{
+  "name": "02-tcp_server",
+  "version": "1.0.0",
+  "description": "make a tcp server from scratch with nodejs",
+  "main": "server.ts",
+  "author": "onecode24",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.11.20",
+    "typescript": "^5.3.3"
+  }
+}
