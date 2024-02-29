@@ -1,0 +1,16 @@
+{
+  "name": "03-load_balancing",
+  "version": "1.0.0",
+  "description": "A simple load balancer made with nodejs (only for comprehension usage)",
+  "main": "server.js",
+  "author": "onecode24",
+  "license": "MIT",
+  "dependencies": {
+    "http": "^0.0.1-security",
+    "http-proxy": "^1.18.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.22",
+    "typescript": "^5.3.3"
+  }
+}

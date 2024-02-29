@@ -3,3 +3,6 @@ yarn-error.log
 yarn.lock
 package-lock.json
 .vscode
+
+# Ignore all js files generate after compilation 
+03-load_balancing/*.js
