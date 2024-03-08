@@ -10,8 +10,8 @@ interface IEmailService {
     sendMail(mail: Mail): Promise<EmailTransmissionResult>;
 }
 
-class Mail {
-    // Define properties and methods for the Mail class
+type Mail = {
+    // Define properties and methods for the Mail interface
     subject: string;
     from: string;
     to: string[];

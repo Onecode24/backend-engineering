@@ -26,6 +26,9 @@ This principle is about **extending** the behavior of a class without **modifyin
 **Example:** go to file [OpenClosedPrinciple](./04x02_OCP)
 
 ### LisKov-Substitution Principle (LSP)
-***Derived classes must be substitutable for their base classes*** \
+***Derived classes must be substitutable for their base classes*** 
+
+
 This principle is about **inheritance** and **polymorphism**. It states that if a program is using a base class, then the reference to the base class can be replaced with a derived class without affecting the functionality of the program.
 
+**Example:** go to file [LiskovSubstitutionPrinciple](./04x03_LSP)
