@@ -1,3 +1,6 @@
+
+// All of this must be in different files, but for the sake of the example I put it in same file. You should put them all in one file.
+
 interface EmailTransmissionResult {
     // Define properties and methods based on your specific requirements
     success: boolean;

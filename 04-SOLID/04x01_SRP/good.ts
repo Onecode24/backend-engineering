@@ -1,5 +1,8 @@
-// Abstract Employee class to handle common functionality
 
+// All of this must be in different files, but for the sake of the example I put it in same file. You should put them all in one file.
+
+
+// Abstract Employee class to handle common functionality
 abstract class Employee {
     // This needs to be implemented by the derived classes
     public abstract calculatePay(): number;
