@@ -38,3 +38,11 @@ This principle is about **inheritance** and **polymorphism**. It states that if 
 This principle is about **interfaces**. It states it’s better to have `smaller`, `focused` **interfaces** rather than large, monolithic ones.
 
 **Example:** go to files[InterfaceSegregationPrinciple](./04x04_ISP)
+
+## Dependency Inversion Principle (DIP)
+***High-level modules should not depend on low-level modules. Both should depend on abstractions.*** 
+
+- **High-level modules** are `interfaces` and `abstract classes` that define the policy of the application. 
+- **Low-level modules** are the concrete `classes` that implement the policy.
+
+**Example:** go to files [DependencyInversionPrinciple](./04x05_DIP)
