@@ -1,0 +1,12 @@
+{
+  "name": "05-UDP",
+  "version": "1.0.0",
+  "description": "UDP server from scratch with nodejs",
+  "main": "index.ts",
+  "author": "onecode24",
+  "license": "MIT",
+  "dependencies": {
+    "dgram": "^1.0.1"
+  },
+  "devDependencies": {}
+}
