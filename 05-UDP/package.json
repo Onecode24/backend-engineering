@@ -2,7 +2,7 @@
   "name": "05-UDP",
   "version": "1.0.0",
   "description": "UDP server from scratch with nodejs",
-  "main": "index.ts",
+  "main": "index.js",
   "author": "onecode24",
   "license": "MIT",
   "dependencies": {
