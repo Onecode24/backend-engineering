@@ -6,3 +6,4 @@ package-lock.json
 
 # Ignore all js files generate after compilation 
 03-load_balancing/*.js
+06-regex/*.js
