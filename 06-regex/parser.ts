@@ -111,9 +111,9 @@ function parse(regex: string){
     return stack[0]
 }
 
-import {inspect} from 'util'
-const regex = 'a?(b.*c)+d';
-console.log(inspect(parse(regex),false, Infinity));
+// import {inspect} from 'util'
+// const regex = 'a?(b.*c)+d';
+// console.log(inspect(parse(regex),false, Infinity));
 
 
 
