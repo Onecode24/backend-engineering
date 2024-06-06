@@ -8,3 +8,5 @@ This is a list of things that a backend engineer must know (according to me and 
 - [TCP Server from scratch with NodeJs](./02-tcp_server)
 - [Load Balancing explain from scratch with NodeJs](./03-load_balancing)
 - [Principle SOLID (Software Design)](./04-SOLID)
+- [Build a simple UDP server with dgram](./05-UDP)
+- [Build a simple Regex Engine from scratch](./06-regex)
