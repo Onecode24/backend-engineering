@@ -15,6 +15,6 @@ export const QuantityType = {
 export type StateDataType = {
     type: string,
     quantify: string,
-    states?: StateDataType[],
+    states?: Array<StateDataType>,
     value?: string
 }
