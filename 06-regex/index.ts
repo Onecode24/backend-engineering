@@ -1,5 +1,5 @@
 import parse from "./parser";
-import { OperatorsType, QuantityType, StateDataType } from "./types";
+import { BacktrackDataType, OperatorsType, QuantityType, StateDataType } from "./types";
 
 function checkStateMatchingAtIndex(state: StateDataType, str: string, index: number) :  [boolean, number] {
     if(index>=str.length) {
@@ -24,15 +24,55 @@ function checkStateMatchingAtIndex(state: StateDataType, str: string, index: num
 function test(states: Array<StateDataType>, str : string) : [boolean, number] {
     const queue = states.slice() // make copy the array from start to end
     let i=0;
+    let backtrackStack : Array<BacktrackDataType> = [];
     let currentState = queue.shift() // get the first element from the array
+
+    function backtrack(): Boolean{
+        queue.unshift(currentState!)
+        let couldBacktrack = false;
+
+        while(backtrackStack.length){
+            const {isBacktrackable, state, consumption} = backtrackStack.pop()!;
+            if(isBacktrackable) {
+                if(consumption?.length === 0) {
+                    queue.unshift(state)
+                    continue;
+                }
+                const n = consumption!.pop()!;
+                i-=n;
+                backtrackStack.push({isBacktrackable, state, consumption})
+                couldBacktrack = true;
+                break;
+            }
+            queue.unshift(state)
+            consumption?.forEach(n => {
+                i-=n;
+
+            });
+        }
+        if(couldBacktrack){
+            currentState = queue.shift()
+        }
+        return couldBacktrack;
+    }
 
     while(currentState) {
         switch(currentState.quantify) {
             case QuantityType.ExactlyOne: {
                 const [isMatch, consumed] = checkStateMatchingAtIndex(currentState, str, i)
                 if(!isMatch) {
-                    return [false, 0]
+                    const indexBeforeBacktracking = i;
+                    const couldBacktrack = backtrack()
+                    if(!couldBacktrack){
+                        return [false, indexBeforeBacktracking]
+                    }
+                    continue;
                 }
+                backtrackStack.push({
+                    isBacktrackable: false,
+                    state: currentState,
+                    consumption: [consumed],
+                })
                 i+=consumed;
                 currentState = queue.shift()
                 continue;
@@ -40,11 +80,22 @@ function test(states: Array<StateDataType>, str : string) : [boolean, number] {
 
             case QuantityType.ZeroOrOne: {
                 if(i>=str.length) {
+                    backtrackStack.push({
+                        isBacktrackable: false,
+                        state: currentState,
+                        consumption: [0],
+                    })
                     currentState = queue.shift()
                     continue;
                 }
                 const [isMatch, consumed] = checkStateMatchingAtIndex(currentState, str, i)
                 i+=consumed;
+                backtrackStack.push({
+                    isBacktrackable: isMatch && consumed > 0,
+                    state: currentState,
+                    consumption: [consumed],
+                
+                })
                 currentState = queue.shift()
                 continue;
             }
@@ -53,12 +104,31 @@ function test(states: Array<StateDataType>, str : string) : [boolean, number] {
                 /**
                  *! Sensitivity: We have to check the state matching until it's not matching anymore
                  */
-                while(i<str.length) {
-                    const [isMatch, consumed] = checkStateMatchingAtIndex(currentState, str, i)
-                    if(!isMatch || consumed === 0) {
+                const backtrackState : BacktrackDataType = {
+                    isBacktrackable: true,
+                    state: currentState,
+                }
+                while (true){
+                    if(i>=str.length) {
+                        if(backtrackState?.consumption?.length === 0) {
+                            backtrackState.consumption!.push(0);
+                            backtrackState.isBacktrackable = false;
+                        }
+                        backtrackStack.push(backtrackState)
+                        currentState = queue.shift();
                         break;
                     }
-                    i+=consumed;
+                    const [isMatch, consumed] = checkStateMatchingAtIndex(currentState, str, i)
+                        if(!isMatch || consumed === 0) {
+                            if(backtrackState?.consumption?.length === 0) {
+                                backtrackState.consumption!.push(0);
+                                backtrackState.isBacktrackable = false;
+                            }
+                            currentState = queue.shift();
+                            break;
+                        } 
+                        backtrackState?.consumption?.push(consumed);
+                        i+=consumed;
                 }
                 currentState = queue.shift()
                 continue;
@@ -72,8 +142,8 @@ function test(states: Array<StateDataType>, str : string) : [boolean, number] {
     return [true, i]
 }
 
-const regex = 'a(b.)*cd'
+const regex = 'a.*c'
 const states = parse(regex)
-const str = 'ab!b$cd'
+const str = 'acccccccccccccccc'
 const result = test(states, str)
 console.log(result);

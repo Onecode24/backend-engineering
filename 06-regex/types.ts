@@ -18,3 +18,9 @@ export type StateDataType = {
     states?: Array<StateDataType>,
     value?: string
 }
+
+export type BacktrackDataType = {
+    isBacktrackable: boolean,
+    state: StateDataType,
+    consumption?: number[]
+}
